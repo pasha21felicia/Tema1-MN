@@ -1,0 +1,30 @@
+Tema 1 - MN -Digori Parascovia 313CC
+
+Task 1.1 Generate probabilities:
+Am creat o matrice auxiliara care contine numarul de probabilitati (de exemplu daca rows = 4 Aux = [1 0 0 0; 2 3 0 0; 4 5 6 0; 7 8 9 10]). Deoarece primul rand nu se schimba indiferent de ce rows primesc l-am fixat cu rezultatul din ref, iar incepand cu al doilea rand al matricei Aux am tratat 6 cazuri particulare, unde fiecare element al matricei Aux se incadreaza. Astfel iau elementele de pe orice rand stanga inafara de ultimul (ex. 2, 4) si le pun drumurile -1 in acord cu patternul care l-am observat din desenul de pe foaie si matricea Aux, cazul orice rand dreapta inafara de ultimul o sa ia (ex 3, 6), cazul ultimul rand stanga o sa ia ex 7, ultimul rand dreapta ia 10, ultimul rand mijloc ia 8, 9 si restul in mijloc sunt cele care au toate 6 drumuri si dupa ex asta este doar 5. 
+
+Task 1.2 Jacobi factorization 
+Am folosit algoritmul oferit ca suport in curs pentru a genera matricea de iteratie G_j si matricea c_J. 
+
+Task 1.3 matrix to csr
+Pentru a genera vectorii values si colind am facut o parcurgere simpla a matricii A in care efectiv sub conditia A(i, j) != 0 am completat vectorul de valori si de pozitii a elementelor nenule. 
+Am observat ca rowptr mereu va avea prima valoare = 1, apoi folosindu-ma de vectorul colind am obsevat ca daca elementul colind(i) < colind(i+1) (adica succesorul lui) atunci sigur acel element din pozitia lui colind(i) este primul element nenul de pe un rand din matricea A. 
+
+Task 1.4 Jacobi sparse
+M-am folosit de algoritmul implementat la explicatiile de laborator forma matriceala, setand si un numar max. mare de iteratii pentru a imbunatati precizia. Aici as avea de comentat ca mi-a luat ceva timp pana am prins cum sa folosesc functia preimplentata in tema crs_multiplication, asta nefiind mentionat in enuntul temei.
+
+Task 2.1 clustering_pc
+
+Pentru partea de initializare am parcurs de NC ori matricea points de fiecare data adaugand in clusterul i punctele cu proprietatea (indice points mod NC == i). Pentru simplitate am parcurs patricea points din NC in NC pozitii si am adaugat acele puncte in clusterul respectiv. Am aflat suma si media ca apoi sa introduc media in matricea de centroizi. As mentiona si aici ca explicarea din enuntul temei a fost foarte vaga incat m-a tinut 2 zile cu gandul ca points mod NC == i este defapt valoarea din punct dar nu indicele punctului in matrice. Pentru simplitate am folosit iteratiile pana la un maxiter in a determina centroizii. Apoi am calculat distanta euclidiana a fiecarui punct pentru a gasi centroidul de care apartine si la final recalculez centroizii din clustere pana se stabilizeaza.
+
+Task 2.2 compute_cost_pc
+Iau numarul de centroizi si numarul de puncte. Parcurg toate punctele si caut centroidul de care apartin, apoi calculez distanta de la un punct la fiecare centroid in parte si cauta distanta minima si centroidul de care apartine cost = cost + min_dist. Cand am gasit centroidul de care apartine vom adauga la costul total distanta fata de acesta.
+
+Task 3.1 RGB histogram
+
+Am transformat imaginea citita intr-o matrice, apoi am extras din ea matricile r, g, b pentru red, green, blue. Apoi am verificat care dintre valorile r, g, b se incadreaza in intervalul de interes, notand elementele ce se incadreaza cu 1 si cele care nu cu 0. La final am luat suma elementelor unitate a matricelor X, Y, Z la fiecare pas a parcurgerii.
+
+Task 3.2 HSV histogram
+Am aplicat algoritmul de coversie RGB2HSV prezentat in tema si l-am implementat in functie convert_rgb_to_hsv pentru acuratete. Apoi ca la RGB histogram am verificat intervalele pentru a gasi elementele care se incadreaza(1) si cele care nu(0).
+ 
+
